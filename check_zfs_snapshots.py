@@ -41,8 +41,6 @@ def main(argv):
             arg_hostname = arg
 
 
-   
-
     if arg_critical <= arg_warning: help()
 
     cmd = 'for i in `/usr/sbin/zfs list -Ht snapshot|grep backup|cut -f1`; do /usr/sbin/zfs get -H creation $i;done'
