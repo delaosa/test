@@ -1,6 +1,8 @@
+
 #!/usr/bin/python
 
 # First version by delaosa
+# v1.1 by delaosa
 
 """
 linux:~# iostat -dxk
@@ -36,7 +38,7 @@ def main(argv):
     arg_hostname = ''
     arg_disks = ''
     os = ''
-    sampletime = 30
+    sampletime = 15
 
     try:
         opts, args = getopt.getopt(argv,"hH:d:o:s:")
@@ -53,11 +55,11 @@ def main(argv):
             os = arg
         elif opt == '-s':
             sampletime = arg
-     
-    
-    if os not in ("solaris", "linux"): 
+
+
+    if os not in ("solaris", "linux"):
         help()
-    
+
 
     if os == 'solaris':
             cmd = 'iostat -x'
@@ -73,35 +75,34 @@ def main(argv):
             ws = 4
             krs = 5
             kws = 6
-            svct = 10
+            svct = 9 # use wait insead of svctm
             busy = 11
-           
+
 
     if arg_disks:
-        cmd += ' ' + arg_disks +  ' ' + str(sampletime) + ' 2'   
+        cmd += ' ' + arg_disks +  ' ' + str(sampletime) + ' 2'
     else:
         cmd += ' ' + str(sampletime) + ' 2'
-    
-    
+
+
     if arg_hostname:
         sshcommand = 'ssh -qx -o IdentityFile=/usr/local/nagios/.ssh/id_rsa_nagios -l root ' + arg_hostname
         cmd = sshcommand + ' ' + cmd
 
-   
-    
-    p1 = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)        
-       
+
+    p1 = subprocess.Popen(shlex.split(cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
     output,err = p1.communicate()
 
     iostat = output.split('\n')
 
     mark = 0
-    
+
     disks = defaultdict(dict)
 
-    
+
     for ioline in iostat[0:-1]:
-            
+
             match = re.search('^[dD]evice', ioline)
             if mark > 1 and ioline:
                     iodisk = ioline.split()
@@ -124,6 +125,6 @@ def main(argv):
 
     print "OK|" + perfdata
     sys.exit(0)
-    
+
 if __name__ == "__main__":
     main(sys.argv[1:])
