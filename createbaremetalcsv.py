@@ -29,7 +29,6 @@
 ##         January 2015 : Compatible with hpilo 2.10 version and some errors handling (delaosa)
 ## -------------------------------------------------------------------------------------------------------------
 
-
 import argparse
 import hpilo
 import re
