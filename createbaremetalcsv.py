@@ -1,7 +1,7 @@
 ## -------------------------------------------------------------------------------------------------------------
 ## 
 ##
-##      Description: Create-Baremetal.csv
+## Description: Create-Baremetal.csv
 ##
 ## DISCLAIMER
 ## The sample scripts are not supported under any HP standard support program or service.
