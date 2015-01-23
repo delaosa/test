@@ -63,8 +63,6 @@ def connect_ssh_key(hostname, hostip, user, keyfile):
    
     ssh.close()
 
-
-
 # Main
 
 curr_epoch=int(time.mktime(time.localtime())/(24*60*60))
