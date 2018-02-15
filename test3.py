@@ -1,5 +1,0 @@
-"delete"
-"no"
-"yes"
-"yes"
-"no"
