@@ -1,2 +1,3 @@
 "delete"
 "no"
+"yes"
