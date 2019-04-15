@@ -30,7 +30,7 @@ from collections import defaultdict
 
 
 def help():
-    print sys.argv[0] + ' -o "linux|solaris" [-H hostname] [-d "space separated list of disks"] [-s sample time(s)]'
+    print sys.argv[0] + ' -o "Linux|Solaris" [-H hostname] [-d "space separated list of disks"] [-s sample time(s)]'
     sys.exit(2)
 
 def main(argv):
